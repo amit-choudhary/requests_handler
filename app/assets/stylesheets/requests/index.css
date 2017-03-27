@@ -1,0 +1,30 @@
+.container {
+  width: 900px;
+}
+
+.heading {
+  margin-bottom: 10px;
+}
+
+.request-list {
+    position: relative;
+    top: 4px;
+}
+
+thead th, .btn {
+  background: #333;
+  border: 0;
+  color: #fff;
+}
+
+a.btn,
+ a.btn:link,
+a.btn:visited, a.btn:hover, a.btn:active, a.btn:focus {
+  text-decoration: none;
+  color: #fff;
+  background: #333;
+}
+
+.inner-container {
+  margin-top: 60px;
+}

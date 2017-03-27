@@ -1,0 +1,51 @@
+.row.comment-box{
+  margin-top: 0;
+}
+
+.comment-box{
+  margin-bottom: 5px;
+}
+
+.comment-box .user-img-container img{
+  height: 60px;
+  width: 60px;
+}
+
+.comment-box .user-name{
+  font-size: 20px;
+}
+
+.comment-box .comment-time{
+  font-size: 12px;
+}
+
+.comment-box .comment-text textarea{
+  background-color: #f2f2f2;
+  border: none;
+  outline: 0;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.action-btns .btn {
+  min-width: 100px;
+  outline: 0;
+  padding: 9px;
+}
+
+.request-title {
+  border-bottom: 1px solid #b9c1cd;
+  padding-bottom: 8px;
+}
+
+.fix-pos {
+  padding: 10px 0px 10px 8px;
+  width: 89%;
+  height: 10%;
+}
+
+.request-container {
+  margin-top: 20px;
+}

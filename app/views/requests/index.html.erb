@@ -1,0 +1,33 @@
+<%= stylesheet_link_tag 'requests/index' %>
+
+<div class="bs-example" data-example-id="simple-table">
+  <div class="heading clearfix">
+    <p class="pull-left request-list" ><h4><b>Requests List</b></h4></p>
+    <% if current_user.type == 'Customer' %>
+      <%= link_to 'Create New Request', "#", class: "btn btn-default pull-right", data: { toggle: "modal", target: "#newRequest" } %>
+    <% end %>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Subject</th>
+        <th>Status</th>
+        <th>Support Agent</th>
+        <th>Raised At</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @requests.each do |request| %>
+      <tr>
+        <td><%= request.subject %></td>
+        <td><%= request.status %></td>
+        <td><%= request.support_agent.try(:email) %></td>
+        <td><%= request.created_at %></td>
+        <td><%= link_to 'View', request_path(request) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<%= render 'new_request_modal' %>

@@ -1,0 +1,55 @@
+<% content_for :header do -%>
+  <%= stylesheet_link_tag 'requests/show' %>
+<% end -%>
+
+<div class="request-title fix-pos clearfix">
+  <div class="pull-left">
+   <h4> <b>Request Details</b> </h4>
+  </div>
+  <div class="pull-right">
+    <div class="action-btns">
+      <% if current_user.type == 'SupportAgent' %>
+        <a href="<%= assign_request_path(@request) %>" class="btn btn-info btn-approve" data-method="patch">ASSIGN TO ME</a>
+      <% end %>
+      <% unless @request.status == 'solved' %>
+        <a href="<%= solve_request_path(@request) %>" class="btn btn-info btn-approve" data-method="patch">MARK AS SOLVED</a>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class='request-container'>
+  <h3>Subject: <%= @request.subject %></h3>
+  <h4>Content: <%= @request.content %></h4>
+  <div class="comment-div" id="tab-1">
+    <div id='flash-div' style='display:none;' class="alert alert-danger alert-dismissable" style="margin-bottom:0;">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+      <strong>Error!</strong> Comment could not be successfully submitted. Please try again
+    </div>
+    <% unless @request.status == 'solved' %>
+      <div class="row comment-box" id='form-comment-div'>
+        <div class="col-lg-11 col-md-8">
+          <h4 class="user-name"><%= current_user.name %></h4>
+          <div class="comment-text">
+            <%= form_tag request_comments_path(@request), method: 'post' do %>
+            <%= text_area_tag :content, nil, rows: 3, placeholder: 'Type your comment here' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <hr>
+    <h4>Comments</h4>
+    <% @request.comments.order_by_creation.each do |comment| %>
+    <div class="row comment-box">
+      <div class="col-lg-11 col-md-8">
+        <h4 class="user-name"><%= comment.user.name %></h4>
+        <p class="comment-time"><%= distance_of_time_in_words(Time.now, comment.created_at) %> ago</p>
+        <div class="comment-text"><%= comment.content %></div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+<% content_for :body_bottom do -%>
+  <%= javascript_include_tag 'comment' %>
+<% end -%>
